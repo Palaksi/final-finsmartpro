@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSmart Pro | Financial Insight Hub 📊</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>FinSmart <span>Pro</span></h2>
+        </div>
+        <nav>
+            <a href="#" id="nav-dash" class="active" onclick="showSection('dashboard')">🏠 Dashboard</a>
+            <a href="#" id="nav-cma" onclick="showSection('cma-corner')">📑 CMA Corner</a>
+        </nav>
+        <div class="sidebar-footer">
+            <p style="font-size: 12px; color: #bdc3c7;">Developed by Sweety ✨</p>
+        </div>
+    </aside>
+
+    <main class="main-content" id="reportArea">
+        <header>
+            <div class="header-text">
+                <h1 id="pageTitle">Financial Dashboard</h1>
+                <p id="currentDate"></p>
+            </div>
+            <button class="btn-download" onclick="downloadPDF()">📥 Download Report</button>
+        </header>
+
+        <div id="dashboard-section">
+            <section class="dashboard-grid">
+                <div class="card input-card">
+                    <h3>Monthly Income (₹)</h3>
+                    <input type="number" id="incomeInput" placeholder="Enter amount..." oninput="updateDashboard()">
+                    <p class="hint">Analysis updates automatically.</p>
+                </div>
+                <div id="results-grid" class="results-grid">
+                    </div>
+            </section>
+
+            <section class="viz-section">
+                <div class="card chart-container">
+                    <h3>Spending Allocation</h3>
+                    <canvas id="financeChart"></canvas>
+                </div>
+                <div class="card tips-card">
+                    <h3>Financial Advice</h3>
+                    <div id="tipBox"><p>"Invest in yourself first."</p></div>
+                    <button class="btn-next" onclick="nextTip()">Next Tip ➔</button>
+                </div>
+            </section>
+        </div>
+
+        <section id="cma-section" class="card" style="display:none;">
+            <h3>📑 CMA Academy Corner</h3>
+            <div class="cma-grid">
+                <div class="tool-box">
+                    <h4>GST Calculator</h4>
+                    <input type="number" id="basePrice" placeholder="Base Price (₹)">
+                    <select id="gstPercent">
+                        <option value="5">GST 5%</option>
+                        <option value="12">GST 12%</option>
+                        <option value="18" selected>GST 18%</option>
+                        <option value="28">GST 28%</option>
+                    </select>
+                    <button onclick="calculateGST()" class="btn-calc">Calculate GST</button>
+                    <div id="gstResult"></div>
+                </div>
+                <div class="tool-box">
+                    <h4>CMA Study Focus</h4>
+                    <p id="studyTip">"Costing is about value, not just price."</p>
+                    <button onclick="newStudyTip()" class="btn-next">Next Concept</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="src/script.js"></script>
+</body>
+</html>
